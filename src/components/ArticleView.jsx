@@ -2,6 +2,7 @@ import { Spinner, Badge } from 'react-bootstrap';
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react"
 import { getArticleById } from "../utils/newsApi";
+import CommentList from './CommentList';
 
 function ArticleView(){
     const [article, setArticle] = useState([]);
@@ -37,11 +38,14 @@ function ArticleView(){
             ) : (
                 <section id="article-view" className="article-view container">
                     <h1>{article.title}</h1>
-                    <Badge>{article.topic}</Badge>
+                    <Badge className="bg-success">{article.topic}</Badge>
                     <time className="datetime">{new Date(article.created_at).toDateString()}</time>
-                    <img src={article.article_img_url} />
+                    <figure>
+                        <img src={article.article_img_url} />
+                    </figure>
                     <span className="author">By {article.author}</span>
                     <main>{article.body}</main>
+                    <CommentList articleId={article_id} setError={setError}/>
                 </section>
             )}
         </>
