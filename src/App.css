@@ -22,12 +22,16 @@ a {
   width: 100%;
 }
 
-.top-article {
-  margin-top: -100px;
+.article-view .datetime {
+  display:block;
+  font-size: 0.75em;
+  padding: 0.5em 0;
 }
 
-.top-article .container {
-  margin-top: -100px;
-  text-decoration: none;
-  color: #fff;
+.article-view img {
+  width: 100%;
+}
+
+.article-view main {
+  padding-top: 1em;
 }

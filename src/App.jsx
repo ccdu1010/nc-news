@@ -4,6 +4,7 @@ import './App.css'
 import Header from './components/Header'
 import Home from './components/Home';
 import ArticlesList from './components/ArticlesList';
+import ArticleView from './components/ArticleView';
 import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/articles/:topic" element={<ArticlesList />} />
+        <Route path="/article/:article_id" element={<ArticleView />} />
       </Routes>
     </Container>
   )

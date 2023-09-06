@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function ArticleCard({article}){
     return (
         <Col key={article.article_id} className="article">
-            <Link to={`articles/${article.article_id}`}>
+            <Link to={`article/${article.article_id}`}>
                 <img src={article.article_img_url} />
                 <Container>
                     <Badge bg="secondary">{article.topic}</Badge>

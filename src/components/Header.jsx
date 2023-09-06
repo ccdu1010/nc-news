@@ -18,7 +18,7 @@ function Header(){
 
     return (
         <Navbar>
-            <Container className="p-3">
+            <Container>
                 <Navbar.Brand href="/">Northcoders News</Navbar.Brand>
                 <Nav topics={topics} />
             </Container>
