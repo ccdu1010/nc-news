@@ -26,3 +26,9 @@ export function getArticles(
       return response.data.articles;
     });
 }
+
+export function getArticleById(articleId) {
+  return newsApi.get(`/api/articles/${articleId}`).then((response) => {
+    return response.data.article;
+  });
+}
