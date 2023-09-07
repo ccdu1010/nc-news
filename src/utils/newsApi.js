@@ -32,3 +32,9 @@ export function getArticleById(articleId) {
     return response.data.article;
   });
 }
+
+export function getCommentsForArticle(articleId) {
+  return newsApi.get(`/api/articles/${articleId}/comments`).then((response) => {
+    return response.data.comments;
+  });
+}

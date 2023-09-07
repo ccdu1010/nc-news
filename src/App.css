@@ -28,10 +28,27 @@ a {
   padding: 0.5em 0;
 }
 
-.article-view img {
+.article-view figure {
   width: 100%;
+}
+
+.article-view figure img {
+  display: block;
+  width: 100%;
+  max-width: 768px;
 }
 
 .article-view main {
   padding-top: 1em;
+}
+
+.comments-view {
+  margin: 1em 0;
+}
+
+.comments-view .comment {
+  background: #F8F9FA;
+  border-radius: 1em;
+  padding: 1em;
+  margin: 1em 0;
 }
