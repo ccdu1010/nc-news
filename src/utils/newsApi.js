@@ -38,3 +38,11 @@ export function getCommentsForArticle(articleId) {
     return response.data.comments;
   });
 }
+
+export function patchArticle(articleId, inc_votes) {
+  return newsApi
+    .patch(`/api/articles/${articleId}`, { inc_votes: inc_votes })
+    .then((response) => {
+      return response.data.article;
+    });
+}
