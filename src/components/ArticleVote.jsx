@@ -8,8 +8,6 @@ function ArticleVote({articleId, votes, setVotes}){
         setVotes(votes + inc);
         patchArticle(articleId, inc)
         .then((articleFromApi) => {
-            console.log("vote success")
-            console.log(votes)
             setVotes(articleFromApi.votes);
         })
         .catch((errorFromApi) => {

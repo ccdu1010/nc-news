@@ -34,7 +34,7 @@ function CommentList({ articleId, setError }){
                 <section className="comments-view">
                     <h5>All Comments</h5>
                     {comments.map((comment) => {
-                        return <CommentCard key={comment.article_id} comment={comment} />
+                        return <CommentCard key={comment.comment_id} comment={comment} />
                     })}
                 </section>
             )}
