@@ -3,9 +3,11 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react"
 import { getArticleById } from "../utils/newsApi";
 import CommentList from './CommentList';
+import ArticleVote from './ArticleVote';
 
 function ArticleView(){
     const [article, setArticle] = useState([]);
+    const [votes, setVotes] = useState(0);
     const [loading, setLoading]= useState(false);
     const [error, setError] = useState(false);
     const { article_id } = useParams();
@@ -16,6 +18,7 @@ function ArticleView(){
         getArticleById(article_id)
         .then((articleFromApi) => {
             setArticle(articleFromApi);
+            setVotes(articleFromApi.votes)
             setLoading(false);
         })
         .catch((errorFromApi) => {
@@ -39,6 +42,7 @@ function ArticleView(){
                 <section id="article-view" className="article-view container">
                     <h1>{article.title}</h1>
                     <Badge className="bg-success">{article.topic}</Badge>
+                    <ArticleVote articleId={article_id} votes={votes} setVotes={setVotes} />
                     <time className="datetime">{new Date(article.created_at).toDateString()}</time>
                     <figure>
                         <img src={article.article_img_url} />
