@@ -46,3 +46,20 @@ export function patchArticle(articleId, inc_votes) {
       return response.data.article;
     });
 }
+
+export function postComment(articleId, username, comment) {
+  return newsApi
+    .post(`/api/articles/${articleId}/comments`, {
+      username: username,
+      body: comment,
+    })
+    .then((response) => {
+      return response.data.comment;
+    });
+}
+
+export function getUsers() {
+  return newsApi.get("api/users").then((response) => {
+    return response.data.users;
+  });
+}

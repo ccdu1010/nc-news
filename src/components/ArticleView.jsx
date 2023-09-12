@@ -1,12 +1,14 @@
 import { Spinner, Badge } from 'react-bootstrap';
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react"
-import { getArticleById } from "../utils/newsApi";
+import { getArticleById, getCommentsForArticle } from "../utils/newsApi";
 import CommentList from './CommentList';
 import ArticleVote from './ArticleVote';
+import PostComment from './PostComment';
 
 function ArticleView(){
     const [article, setArticle] = useState([]);
+    const [comments, setComments] = useState([]);
     const [votes, setVotes] = useState(0);
     const [loading, setLoading]= useState(false);
     const [error, setError] = useState(false);
@@ -15,10 +17,19 @@ function ArticleView(){
     useEffect(() => {
         setLoading(true)
         setError(false)
-        getArticleById(article_id)
-        .then((articleFromApi) => {
-            setArticle(articleFromApi);
-            setVotes(articleFromApi.votes)
+        const promises = [
+            getArticleById(article_id)
+            .then((articleFromApi) => {
+                setArticle(articleFromApi);
+                setVotes(articleFromApi.votes);
+            }),
+            getCommentsForArticle(article_id)
+            .then((commentsFromApi) => {
+                setComments(commentsFromApi);
+            })
+        ]
+        Promise.all(promises)
+        .then(() => {
             setLoading(false);
         })
         .catch((errorFromApi) => {
@@ -49,7 +60,8 @@ function ArticleView(){
                     </figure>
                     <span className="author">By {article.author}</span>
                     <main>{article.body}</main>
-                    <CommentList articleId={article_id} setError={setError}/>
+                    <PostComment articleId={article_id} comments={comments} setComments={setComments} />
+                    <CommentList comments={comments} />
                 </section>
             )}
         </>
